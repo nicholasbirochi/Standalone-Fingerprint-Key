@@ -1,0 +1,31 @@
+# PlatformIO
+firmware/.pio/
+firmware/.pioenvs/
+firmware/.piolibdeps/
+firmware/.vscode/
+.pio/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Build output that is regenerated, not authored. The STLs in enclosure/stl are
+# committed on purpose: the point of the repo is that you can print it without
+# installing a CAD stack.
+*.gcode
+*.3mf
+
+# Revision 1 of the enclosure, supplied as a zip of generated STLs. Superseded
+# by enclosure/ -- kept out of the repo rather than committed as dead weight.
+carcaca_ZW111_ESP32S3_FINAL_STL*.zip
+Projeto_Leitor_Digital_Mac_*.zip

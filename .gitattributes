@@ -1,0 +1,5 @@
+# Normalise line endings in the repository; check out native.
+* text=auto
+
+*.stl binary
+*.png binary
