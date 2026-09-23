@@ -20,6 +20,23 @@ Point 3 is the load-bearing one. It is what makes the whole "no driver, no
 daemon" premise credible, and it was checked before any of this firmware
 existed.
 
+## Verified on a host
+
+| What | Result |
+| --- | --- |
+| The protocol tests | 11 of 11 pass |
+| The framing library | Compiles clean under `-Wall -Wextra` |
+| The full firmware | Compiles and links clean under `-Wall -Wextra` |
+
+The firmware check was done against stubbed core headers -- `Arduino.h`,
+`Preferences.h`, `USB.h`, `USBHIDKeyboard.h` -- written to match the real
+signatures. That catches syntax errors, type errors, and anything declared but
+never defined, which is most of what goes wrong in code nobody has compiled.
+
+It is **not** the same as building against the real ESP32 core. A signature that
+differs from the stub would still fail there. `pio run -e esp32s3` in CI is the
+authoritative answer, and it has not run yet because nothing has been pushed.
+
 ## Not demonstrated
 
 | What | Status |
@@ -30,8 +47,7 @@ existed.
 | Typing into the macOS login window | Never attempted |
 | Unlocking a Mac with the lid closed | Never attempted |
 | Behaviour after a reboot or a FileVault prompt | Never attempted |
-| The firmware in [`firmware/src`](../firmware/src) | Never compiled or flashed |
-| The protocol tests in [`firmware/test`](../firmware/test) | Written, never run |
+| The firmware running on the actual chip | Never flashed |
 | Physical fit of the printed enclosure | Never printed |
 
 ## What the enclosure checks do and do not prove

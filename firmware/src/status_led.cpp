@@ -32,6 +32,11 @@ void StatusLed::Set(LedState state) {
   if (state == state_) return;
   state_ = state;
   entered_at_ = millis();
+  // Paint it now rather than waiting for the next Tick(). Enrolment blocks for
+  // the better part of a minute without reaching the main loop, and the LED
+  // would otherwise sit on the previous colour for all of it.
+  last_emit_ = 0;
+  Tick();
 }
 
 void StatusLed::Tick() {

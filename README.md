@@ -155,11 +155,17 @@ What has been shown on the actual board and Mac:
   [`firmware/bench/hid_keyboard`](firmware/bench/hid_keyboard/hid_keyboard.ino).
   That is the premise of the whole project, and it holds.
 
+What has been verified on a host:
+
+- The protocol tests pass, 11 of 11.
+- The firmware compiles and links clean under `-Wall -Wextra`, against stubbed
+  core headers. Not the same as building against the real ESP32 core -- that is
+  what CI is for -- but it rules out the errors that live in unbuilt code.
+
 What has not:
 
 - The ESP32 has never talked to the HLK-ZW111. No enrolment, no match, nothing.
-- The firmware in [`firmware/src`](firmware/src) has not been compiled or
-  flashed. The protocol tests are written but have not been run.
+- The firmware has never been flashed to the chip.
 - The enclosure has not been printed. The STLs are watertight, manifold and
   consistently wound, which is a statement about the mesh and not about fit.
 - `board.usb_offset_from_center` is the one number in `params.json` that is a

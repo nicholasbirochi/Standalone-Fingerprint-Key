@@ -51,6 +51,13 @@ void PowerUpSensor() {
 // button path want exactly this sequence and its ordering matters: wake first,
 // give the login window time to draw, only then type.
 void Unlock() {
+  // An unenumerated host silently swallows every keystroke, so check before
+  // claiming success: a green flash with nothing typed is worse than a red one.
+  if (!g_typer.Ready()) {
+    g_led.Set(LedState::kFailure);
+    return;
+  }
+
   char secret[kMaxSecretLength + 1];
   if (!g_store.Read(secret, sizeof(secret))) {
     g_led.Set(LedState::kNoSecret);
