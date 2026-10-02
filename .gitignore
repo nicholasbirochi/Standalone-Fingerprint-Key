@@ -1,24 +1,11 @@
-# PlatformIO
-firmware/.pio/
-firmware/.pioenvs/
-firmware/.piolibdeps/
-firmware/.vscode/
+# PlatformIO and Arduino build output
 .pio/
-
-# Python
-__pycache__/
-*.py[cod]
-.venv/
-venv/
-*.egg-info/
+build/
+*.elf
+*.bin
+*.hex
+*.map
 
 # Editors and OS
 .vscode/
-.idea/
 .DS_Store
-Thumbs.db
-desktop.ini
-
-# Generated build output
-*.gcode
-*.3mf
