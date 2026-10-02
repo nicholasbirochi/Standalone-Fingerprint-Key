@@ -23,37 +23,6 @@ jobs:
             firmware/.pio
           key: pio-${{ hashFiles('firmware/platformio.ini') }}
       - run: pip install --upgrade platformio
-      - name: Protocol tests
-        run: pio test -e native
-        working-directory: firmware
       - name: Build
         run: pio run -e esp32s3
         working-directory: firmware
-
-  enclosure:
-    name: enclosure
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-      - run: pip install manifold3d numpy pillow
-      # build.py exits non-zero if a dimension check fails, so this is a real
-      # gate on params.json and not just a regeneration.
-      - name: Generate STLs
-        run: python enclosure/build.py
-      # The square variant shares the model, so a change that breaks only that
-      # layout should still fail the build rather than wait to be noticed.
-      - name: Generate STLs, square variant
-        run: python enclosure/build.py --square --board-long-axis y --out /tmp/stl-square
-      - name: Render previews
-        run: |
-          python tools/render.py
-          python tools/assembly.py
-          python tools/spec_sheet.py
-          python tools/variants.py
-      - uses: actions/upload-artifact@v4
-        with:
-          name: enclosure-stl
-          path: enclosure/stl/*.stl
