@@ -1,6 +1,6 @@
 # Standalone Fingerprint Key
 
-Firmware para ESP32-S3 e HLK-ZW111: uma digital reconhecida envia F13 por USB HID ao macOS. Não armazena nem digita senhas.
+Projeto de uma chave física com ESP32-S3 e sensor HLK-ZW111. Quando o sensor reconhece uma digital cadastrada, o firmware envia a tecla F13 por USB HID ao macOS, sem armazenar ou digitar a senha do usuário.
 
 ![Protótipo da Standalone Fingerprint Key com carcaça impressa em 3D, ESP32-S3, USB-C e sensor biométrico](docs/fingerprint-key.png)
 
@@ -66,3 +66,7 @@ pio device monitor -b 115200
 - **USB HID não aparece:** use cabo de dados e conexão USB nativa do ESP32-S3.
 - **Porta USB errada:** algumas placas têm uma porta USB-UART separada; use a porta nativa para HID.
 - **Configuração USB incorreta:** habilite USB CDC On Boot e selecione USB-OTG/TinyUSB ou equivalente.
+
+## Licença
+
+Código e documentação autorais sob [MIT](license).
